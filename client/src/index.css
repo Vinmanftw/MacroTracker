@@ -62,6 +62,65 @@ form {
   margin: 0 auto;
   padding: 1rem 0 1rem 0;
 }
+div.info{
+  display:flex;
+  flex-direction: column;
+  width:305px;
+}
+div.info div.row1{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+div.info div.row2{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+div.info div.row2 div.space{
+  width:104px;
+}
+
+div.info div.row2 div.LI{
+  display:flex;
+  flex-direction: column;
+}
+
+div.info div.row2 input{
+  width:95%;
+  display:flex;
+  flex-direction: row;
+  
+}
+
+div.LI select{
+  margin-top:0.25rem;
+  padding: 1px;
+}
+
+div.info div.row1 input{
+  width:95%;
+  display:flex;
+  flex-direction: row;
+  
+}
+
+div.info div.row1 div.LI{
+  display:flex;
+  flex-direction: column;
+}
+
+div.info div.row1 div.space{
+  width:10px;
+}
+
+div.info div.row1 div.LI#last{
+  display:flex;
+  flex-direction: column;
+  justify-self:flex-end;
+}
 
 form input {
   margin: 0.25rem 0;
@@ -69,5 +128,6 @@ form input {
 }
 
 form button[type="submit"] {
+  margin-top: 1rem;
   width: 40%;
 }

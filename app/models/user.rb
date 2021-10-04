@@ -1,4 +1,12 @@
 class User < ApplicationRecord
     validates :username, presence: true, uniqueness: true
+    validates :first_name, presence: true
+    validates :is_male, presence: true
     has_secure_password 
+    has_many :user_meals
+    has_many :meals, through: :user_meals
+    
+    def goals
+        Goal.find_by(id: self.goal_id)
+    end
 end

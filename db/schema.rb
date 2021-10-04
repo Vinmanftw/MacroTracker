@@ -10,16 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_01_190005) do
+ActiveRecord::Schema.define(version: 2021_10_04_181930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
+  create_table "goals", force: :cascade do |t|
+    t.integer "protein"
+    t.integer "carbs"
+    t.integer "fat"
+    t.integer "calories"
+    t.integer "weight"
+    t.integer "body_fat"
+    t.integer "lb_change_per_week"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "meals", force: :cascade do |t|
+    t.string "name"
+    t.integer "protein"
+    t.integer "carbs"
+    t.integer "fat"
+    t.integer "calories"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_meals", force: :cascade do |t|
+    t.bigint "meal_id", null: false
+    t.bigint "user_id", null: false
+    t.string "dotw"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["meal_id"], name: "index_user_meals_on_meal_id"
+    t.index ["user_id"], name: "index_user_meals_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "is_male"
+    t.integer "age"
+    t.integer "weight"
+    t.integer "height"
+    t.boolean "is_bulking"
+    t.bigint "goal_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["goal_id"], name: "index_users_on_goal_id"
+  end
+
+  add_foreign_key "user_meals", "meals"
+  add_foreign_key "user_meals", "users"
 end
