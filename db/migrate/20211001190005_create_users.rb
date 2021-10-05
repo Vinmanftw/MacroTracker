@@ -9,8 +9,15 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.integer :age
       t.integer :weight
       t.integer :height
-      t.boolean :is_bulking
-      t.belongs_to :goal
+      t.integer :body_fat
+      t.string :is_bulking
+      t.integer :goal_protein
+      t.integer :goal_carbs
+      t.integer :goal_fat
+      t.integer :goal_calories
+      t.integer :goal_weight
+      t.integer :goal_body_fat
+      t.integer :goal_lb_change_per_week
       
 
       t.timestamps

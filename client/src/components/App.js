@@ -7,7 +7,7 @@ import Home from "./Home";
 
 function App() {
   const [user, setUser] = useState(null);
-
+  
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
@@ -30,10 +30,10 @@ function App() {
         ) : (
           <Switch>
             <Route path="/signup">
-              <SignUp setUser={setUser} />
+              <SignUp setUser={setUser}/>
             </Route>
             <Route path="/login">
-              <Login setUser={setUser} />
+              <Login setUser={setUser}/>
             </Route>
             <Route path="/">
               <Home />

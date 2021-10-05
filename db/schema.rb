@@ -15,18 +15,6 @@ ActiveRecord::Schema.define(version: 2021_10_04_181930) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "goals", force: :cascade do |t|
-    t.integer "protein"
-    t.integer "carbs"
-    t.integer "fat"
-    t.integer "calories"
-    t.integer "weight"
-    t.integer "body_fat"
-    t.integer "lb_change_per_week"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "meals", force: :cascade do |t|
     t.string "name"
     t.integer "protein"
@@ -56,11 +44,17 @@ ActiveRecord::Schema.define(version: 2021_10_04_181930) do
     t.integer "age"
     t.integer "weight"
     t.integer "height"
-    t.boolean "is_bulking"
-    t.bigint "goal_id"
+    t.integer "body_fat"
+    t.string "is_bulking"
+    t.integer "goal_protein"
+    t.integer "goal_carbs"
+    t.integer "goal_fat"
+    t.integer "goal_calories"
+    t.integer "goal_weight"
+    t.integer "goal_body_fat"
+    t.integer "goal_lb_change_per_week"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["goal_id"], name: "index_users_on_goal_id"
   end
 
   add_foreign_key "user_meals", "meals"
