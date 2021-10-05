@@ -18,7 +18,7 @@ function Login({ setUser }) {
       if (r.ok) {
         r.json().then((user) => {
           setUser(user)
-          // history.push('/')
+          history.push('/')
         });
       }
     });
