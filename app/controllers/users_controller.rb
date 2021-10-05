@@ -29,7 +29,7 @@ class UsersController < ApplicationController
         if user.update(update_macro_params)
         
             render json: user
-            redirect_to user
+            
         else
             render json: {error: user.errors.full_messages}
         end
