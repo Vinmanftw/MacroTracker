@@ -10,7 +10,10 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.integer :weight
       t.integer :height
       t.integer :body_fat
+      t.integer :bmr
+      t.integer :tdee
       t.string :is_bulking
+      t.string :activity
       t.integer :goal_protein
       t.integer :goal_carbs
       t.integer :goal_fat

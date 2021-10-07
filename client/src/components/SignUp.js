@@ -4,7 +4,7 @@ function SignUp({ setUser }) {
   const history = useHistory();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [isMale, setIsMale]= useState("true");
+  const [isMale, setIsMale]= useState("Male");
   const [age, setAge]= useState(0);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
