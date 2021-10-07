@@ -3,8 +3,8 @@ class User < ApplicationRecord
     validates :first_name, presence: true
     validates :is_male, presence: true
     has_secure_password 
-    has_many :user_meals
-    has_many :meals, through: :user_meals
-    
-    
+    has_many :meals
+
+        
+   
 end

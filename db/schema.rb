@@ -21,14 +21,16 @@ ActiveRecord::Schema.define(version: 2021_10_04_181930) do
     t.integer "carbs"
     t.integer "fat"
     t.integer "calories"
+    t.string "dotw"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_meals_on_user_id"
   end
 
   create_table "user_meals", force: :cascade do |t|
     t.bigint "meal_id", null: false
     t.bigint "user_id", null: false
-    t.string "dotw"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["meal_id"], name: "index_user_meals_on_meal_id"

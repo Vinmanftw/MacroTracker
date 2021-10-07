@@ -50,8 +50,21 @@ function CarbIntake(calories,protein,fat){
 //   }
 // }
 
+const Div = styled('div')`
+display:flex;
+flex-flow: row wrap;
+justify-content: space-around;
+width:100%;
+gap:4%;
+`
+const H1 = styled('h1')`
+text-align:center;
 
-function Home({ user, setUser }) {
+font-size:10px;
+width:12%;
+`
+function Home({ user, setUser, meal, setMeal }) {
+  
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(0);
   const [bodyFat, setBodyFat]= useState(0);
@@ -107,6 +120,7 @@ function Home({ user, setUser }) {
           });
          
         }
+        console.log(user)
         return (
           <div>
             <h1>Welcome, {user.username}  !</h1>
@@ -194,14 +208,17 @@ function Home({ user, setUser }) {
                 
         return (
           <div>
+            
             <h1>Welcome back, {user.username}!</h1>
-            <h1>BMR: { user.bmr} kcals</h1>
-            <h1>TDEE: {user.tdee} kcals</h1>
-            <h1>Calories {user.goal_calories} kcals/day</h1>
-            <h1>Protein Intake {user.goal_protein} g/day</h1>
-            <h1>Fat Intake {user.goal_fat} g/day</h1>
-            <h1>Carb Intake {user.goal_carbs} g/day</h1>
-            <MealList/>
+            <Div>
+              {/* <h1>BMR: { user.bmr} kcals</h1>
+              <h1>TDEE: {user.tdee} kcals</h1> */}
+              <H1>Calories {user.total_cal}/{user.goal_calories} kcals</H1>
+              <H1>Protein Intake {user.total_protein}/{user.goal_protein} </H1>
+              <H1>Fat Intake {user.total_fat}/{user.goal_fat}</H1>
+              <H1>Carb Intake {user.total_carb}/{user.goal_carbs}</H1>
+            </Div>
+            <MealList user={user} setUser={setUser} meal={meal} setMeal={setMeal}/>
           </div>
         );    
       }

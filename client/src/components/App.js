@@ -7,7 +7,7 @@ import Home from "./Home";
 
 function App() {
   const [user, setUser] = useState(null);
-  
+  const [ meal, setMeal ] = useState([])
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
@@ -15,7 +15,7 @@ function App() {
         r.json().then((user) => setUser(user));
       }
     });
-  }, []);
+  }, [setMeal]);
 
   return (
     <>
@@ -24,7 +24,7 @@ function App() {
         {user ? (
           <Switch>
             <Route path="/">
-              <Home user={user}/>
+              <Home user={user} setUser={setUser} setMeal={setMeal} meal={meal}/>
             </Route>
           </Switch>
         ) : (
@@ -36,7 +36,7 @@ function App() {
               <Login setUser={setUser}/>
             </Route>
             <Route path="/">
-              <Home />
+              <Home user={user} setUser={setUser} setMeal={setMeal} meal={meal}/>
             </Route>
           </Switch>
         )}

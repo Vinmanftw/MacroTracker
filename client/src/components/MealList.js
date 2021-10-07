@@ -3,25 +3,74 @@
 import React,{useState} from 'react'
 import MealCard from './MealCard'
 import styled from "styled-components";
-
+// post request
 const Display= styled('div')`
 display: flex;
 flex-flow: column wrap;
-width:60%;
+width:100%;
 height:50%;
 border: 1px solid #f24725;
 `
 const Select = styled('select')`
 width:80%;
+
 `
 const MacroDiv = styled('div')`
 display: flex;
 flex-flow: column wrap;`
+const Btn = styled('button')`
+display:flex;
+align-self: center;
 
 
-function MealList({ user }) {
-    const { dotw, setDotw } = useState("")
+`
 
+    
+function MealList({ user, setUser,meal,setMeal}) {
+    
+    const [dotw, setDotw ] = useState("Sunday")
+    
+    function mapProb(){
+        
+        if (user.meals){
+            return user.meals.map((meal) =>(<MealCard meal={meal} setUser={setUser} key={meal.id}/>))
+        }
+    }
+    function handleSubmit(e) {
+        e.preventDefault();
+        // console.log(user.meals.length)
+        fetch("/CreateMeal", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            dotw,
+            user_id: user.id
+          }),
+        })
+        .then((r) => {
+          if (r.ok) {
+            r.json().then((meal) => {
+                setMeal(meal)
+              }
+              
+            );
+          }
+        });
+        fetch("/me", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            }
+            
+          }).then((r) => {
+            if (r) {
+              r.json().then((user)=>setUser(user));
+            }
+          });
+    }
+   
     return (
         <Display>
             <Select onChange={(e) => setDotw(e.target.value)} Day="dotw" id="dotw">
@@ -34,8 +83,13 @@ function MealList({ user }) {
             <option value="Saturday">Saturday</option>
             </Select>
             <MacroDiv>
-                <MealCard/>
+                {/* <MealCard meal={meal}/> */}
+                {mapProb()}
+                
             </MacroDiv>
+
+            <Btn  onClick={handleSubmit}>Add new meal</Btn>
+            
         </Display>
     )
 }

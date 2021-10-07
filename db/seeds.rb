@@ -10,8 +10,8 @@ puts "seeding"
 # goal1 = Goal.create(protein:160,carbs:175,fat:70,calories:2240,weight:170,body_fat:15,lb_change_per_week:1)
 vin = User.create(first_name: "Vincent",last_name:"Orsini",is_male:"Male",age: 18,username: "Vinmanftw", password:"water",password_confirmation:"water")
 
-meal1 = Meal.create(name: "Protein bar",protein: 14,carbs: 36,fat:7,calories:220)
+meal1 = Meal.create(name: "Protein bar",protein: 14,carbs: 36,fat:7,calories:220,dotw: "Monday", user_id: vin.id)
 
-vinmeal = UserMeal.create(meal_id: meal1.id,user_id: vin.id,dotw: "Monday")
+
 puts "finished seeding"
 

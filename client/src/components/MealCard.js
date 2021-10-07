@@ -49,40 +49,64 @@ const SubButton = styled('button')`
 width:12%;
 background-color: #2c7a6b;
 border: 1px solid black;`
+const DeleteButton = styled('button')`
 
+background-color: red;
+border: 1px solid black;`
 
-function MealCard({setMeal}) {
-    const [name, setName] = useState(0);
-    const [protein, setProtein] = useState(0);
-    const [carbs, setCarbs]= useState(0);
-    const [fat, setFat]= useState(0);
-    const [calories, setCalories]=useState(0);
+//patch
+
+function MealCard({meal, setUser}) {
+    const [name, setName] = useState(meal.name);
+    const [protein, setProtein] = useState(meal.protein);
+    const [carbs, setCarbs]= useState(meal.carbs);
+    const [fat, setFat]= useState(meal.fat);
+    const [calories, setCalories]=useState(meal.calories);
 
 
     function handleSubmit(e) {
-        e.preventDefault();
-        fetch("/CreateMeal", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            protein,
-            carbs,
-            fat,
-            calories
-          }),
-        })
-        .then((r) => {
-          if (r.ok) {
-            r.json().then((meal) => {
-              setMeal(meal)
-              
-            });
-          }
-        });
-      }
+      e.preventDefault();
+      fetch(`/updateMeal/${meal.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          protein,
+          carbs,
+          fat,
+          calories
+        }),
+      })
+      .then((r) => {
+        if (r.ok) {
+          r.json().then((meal) => {
+            console.log(meal)
+            
+          });
+        }
+      });
+    }
+    function handleDelete() {
+      fetch(`/deleteMeal/${meal.id}`, {
+        method: "DELETE",
+        
+      });
+      fetch("/me", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        }
+        
+      }).then((r) => {
+        if (r) {
+          r.json().then((user)=>setUser(user));
+        }
+      });
+    }
+
+    
     return (
         <Card>
             <h1>Time: </h1>
@@ -127,6 +151,7 @@ function MealCard({setMeal}) {
                 onChange={(e) => setCalories(e.target.value)}
                 />
                 <SubButton type="submit"> Append Macros </SubButton>
+                <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
                 </Form>
 
 
