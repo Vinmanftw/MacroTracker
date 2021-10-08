@@ -60,8 +60,20 @@ gap:4%;
 const H1 = styled('h1')`
 text-align:center;
 
-font-size:10px;
+font-size:18px;
 width:12%;
+`
+const FORM= styled('form')`
+  background-color: #404040;
+  border: 1px solid #1c1c1c;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  
+  margin: 0 auto;
+  padding: 1rem 0 1rem 0;
 `
 function Home({ user, setUser, meal, setMeal }) {
   
@@ -126,7 +138,7 @@ function Home({ user, setUser, meal, setMeal }) {
             <h1>Welcome, {user.username}  !</h1>
             <div className="popup">
               <h1>Please fill in the following form to get your macros!!</h1>
-              <form onSubmit={handleSubmit}>
+              <FORM onSubmit={handleSubmit}>
                 <label htmlFor="height">Height (inches)</label>
                 <input
                   type="text"
@@ -199,7 +211,7 @@ function Home({ user, setUser, meal, setMeal }) {
                   setGoalFat(fat)
                   setGoalCarbs(carbs)}
                   }type="submit">Calculate Macros!!</button>
-              </form>
+              </FORM>
             </div>
           </div>
           );
@@ -214,9 +226,10 @@ function Home({ user, setUser, meal, setMeal }) {
               {/* <h1>BMR: { user.bmr} kcals</h1>
               <h1>TDEE: {user.tdee} kcals</h1> */}
               <H1>Calories {user.total_cal}/{user.goal_calories} kcals</H1>
-              <H1>Protein Intake {user.total_protein}/{user.goal_protein} </H1>
-              <H1>Fat Intake {user.total_fat}/{user.goal_fat}</H1>
-              <H1>Carb Intake {user.total_carb}/{user.goal_carbs}</H1>
+              <H1>Protein {user.total_protein}/{user.goal_protein}g</H1>
+              <H1>Carb Intake {user.total_carbs}/{user.goal_carbs}g</H1>
+              <H1>Fat Intake {user.total_fat}/{user.goal_fat}g</H1>
+              
             </Div>
             <MealList user={user} setUser={setUser} meal={meal} setMeal={setMeal}/>
           </div>

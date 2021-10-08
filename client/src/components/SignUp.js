@@ -1,5 +1,18 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom'
+import styled from "styled-components";
+const FORM= styled('form')`
+  background-color: #404040;
+  border: 1px solid #1c1c1c;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  
+  margin: 0 auto;
+  padding: 1rem 0 1rem 0;
+`
 function SignUp({ setUser }) {
   const history = useHistory();
   const [firstName, setFirstName] = useState("");
@@ -40,7 +53,7 @@ function SignUp({ setUser }) {
   return (
     <div className="signup">
       <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+      <FORM onSubmit={handleSubmit}>
         <div className="info">
           <div className="row1">
             <div className="LI">
@@ -115,7 +128,7 @@ function SignUp({ setUser }) {
           autoComplete="current-password"
         />
         <button type="submit">Sign Up</button>
-      </form>
+      </FORM>
     </div>
   );
 }

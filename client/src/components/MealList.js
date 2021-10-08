@@ -12,7 +12,17 @@ height:50%;
 border: 1px solid #f24725;
 `
 const Select = styled('select')`
-width:80%;
+width:100%;
+font-size: 40px;
+color:#f24725;
+background-color: #2e2e2e;
+border-radius: 4px;
+border: 1px solid #f24725;
+
+text-align: center;
+
+
+
 
 `
 const MacroDiv = styled('div')`

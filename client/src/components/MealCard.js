@@ -8,7 +8,7 @@ display:flex;
 flex-flow: column wrap;
 justify-content: space-around;
 width:100%;
-border: 1px solid black;
+
 
 `;
 const CardContent = styled('div')`
@@ -16,8 +16,9 @@ display:flex;
 flex-flow: column wrap;
 justify-content: space-between;
 width:100%;
-border: 1px solid black;
-background-color: #4d4d4d;`
+border-top: 1px black solid;
+border-bottom: 1px black solid;
+background-color: #404040`
 const Key = styled('div')`
 display:flex;
 flex-flow: row wrap;
@@ -39,6 +40,11 @@ width:12%;
 background-color:#333333;
 border: 1px solid black;
 `
+const Input1 = styled('input')`
+width:12%;
+background-color:#333333;
+border: 1px solid black;
+`
 const H1 = styled('h1')`
 text-align:center;
 
@@ -50,9 +56,21 @@ width:12%;
 background-color: #2c7a6b;
 border: 1px solid black;`
 const DeleteButton = styled('button')`
-
 background-color: red;
-border: 1px solid black;`
+border: 1px solid black;
+width:12%;`
+const Row = styled('div')`
+display:flex;
+flex-flow: row wrap;
+
+width:50%;
+`
+const H2 = styled('h1')`
+text-align:center;
+
+font-size:12px;
+width:15%;
+`
 
 //patch
 
@@ -109,10 +127,15 @@ function MealCard({meal, setUser}) {
     
     return (
         <Card>
-            <h1>Time: </h1>
+            <Row><H2>Time: </H2><Input1
+                type="string"
+                id="time"
+                
+                
+                /></Row>
             <CardContent>
-                <Key><H1>name of meal</H1><H1>Protein</H1>
-                    <H1>Carbs</H1><H1>Fat</H1><H1>Calories</H1>
+                <Key><H1>Meal</H1><H1>Protein (grams)</H1>
+                    <H1>Carbs (grams)</H1><H1>Fat (grams)</H1><H1>Calories (Kcals)</H1>
                 </Key>
                 <Form onSubmit={handleSubmit}>
                 <Input
@@ -150,10 +173,11 @@ function MealCard({meal, setUser}) {
                 value={calories}
                 onChange={(e) => setCalories(e.target.value)}
                 />
+                
                 <SubButton type="submit"> Append Macros </SubButton>
-                <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
+               
                 </Form>
-
+                <DeleteButton onClick={handleDelete}>Delete</DeleteButton>
 
             </CardContent>
 

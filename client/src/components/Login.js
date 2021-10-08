@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom'
+import styled from "styled-components";
 
-
-
+const FORM= styled('form')`
+  background-color: #404040;
+  border: 1px solid #1c1c1c;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+  
+  margin: 0 auto;
+  padding: 1rem 0 1rem 0;
+`
 function Login({ setUser }) {
   const history = useHistory();
   const [username, setUsername] = useState("");
@@ -32,7 +43,7 @@ function Login({ setUser }) {
     <>
       <div className="signup">
         <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
+        <FORM onSubmit={handleSubmit}>
           
           <label htmlFor="username">Username</label>
           <input
@@ -51,7 +62,7 @@ function Login({ setUser }) {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type="submit">Login</button>
-        </form>
+        </FORM>
       </div>
     </>
   );
